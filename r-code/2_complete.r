@@ -3,7 +3,7 @@
 # 2
 # Reads data from files as above and compiles a table of complete cases
 
-complete <- function(directory, id = 1:332) {
+get_complete <- function(directory, id = 1:332) {
     obs_table <- data.frame("id" = numeric(), "nobs" = numeric())
     for (x in id) {
         setx <- read.csv(
@@ -12,4 +12,4 @@ complete <- function(directory, id = 1:332) {
     }
     obs_table
 }
-print(complete("specdata"))
+print(get_complete('specdata'))

@@ -9,9 +9,10 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     temptable <- data.frame()
     for (x in id) {
         setx <- read.csv(
-            file.path(directory, paste0(sprintf("%03d", x), ".csv")))
+            file.path(directory, paste0(sprintf("%03d", x), ".csv"))
+        )
         temptable <- rbind(temptable, setx)
     }
     round(mean(temptable[[pollutant]], na.rm = TRUE), 3)
 }
-pollutantmean("specdata", "nitrate")
+pollutantmean('specdata', 'nitrate')
