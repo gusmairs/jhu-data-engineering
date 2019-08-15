@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-# Using shell to merge many data files into one
+# Experimenting with merge of many data files into one .csv file
 # This runs on all files in 'specdata' in about 3 seconds
 # Pandas does it in 2, base R in 20, haven't tested better R tools
-# Note that 'tail -n +2' means start the tail at the second line
 
 function clr {
 	cat header.csv > alldat.csv
