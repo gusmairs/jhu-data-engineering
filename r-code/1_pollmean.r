@@ -5,14 +5,17 @@
 # here due to memory management. Worth exploring making R work like Python
 # in building a list of dataframes and then concatenating them.
 
-pollutantmean <- function(directory, pollutant, id = 1:332) {
-    temptable <- data.frame()
+dir <- "~/OneDrive/DS_Study/hopkins/02-R-Programming/proj-1/data"
+
+pollutant_mean <- function(directory, pollutant, id = 1:332) {
+    temp_table <- data.frame()
     for (x in id) {
-        setx <- read.csv(
-            file.path(directory, paste0(sprintf("%03d", x), ".csv"))
+        set_x <- read.csv(
+            file.path(directory, paste0(sprintf('%03d', x), '.csv'))
         )
-        temptable <- rbind(temptable, setx)
+        temp_table <- rbind(temp_table, set_x)
     }
-    round(mean(temptable[[pollutant]], na.rm = TRUE), 3)
+    round(mean(temp_table[[pollutant]], na.rm = TRUE), 3)
 }
-pollutantmean('specdata', 'nitrate')
+
+pollutant_mean(file.path(dir, 'specdata'), 'nitrate', id = 200:300)
