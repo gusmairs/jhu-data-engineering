@@ -19,4 +19,4 @@ def corr(dir, thresh):
         corr_list.append([dat['sulfate'].corr(dat['nitrate'])])
     return pd.DataFrame(corr_list)
 
-print(corr('specdata', 1000))
+print(corr('specdata', 1000))]

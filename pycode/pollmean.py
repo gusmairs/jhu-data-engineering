@@ -1,16 +1,17 @@
 #!/usr/bin/env python
+
 # Gets data from files in list and produces mean over those files for
 # the pollutant named.
 
 import pandas as pd
 from os import path
 
-def getdata(dir, pol, dat_list=range(1, 333)):
+def getdata(pol, dat_list=range(1, 333)):
+    with open('py-code/data_path.txt', 'r') as f:
+        dir = f.readlines()[0].replace('\n', '')
     df_list = []
     for dat in dat_list:
-        p = path.join(dir, '{0:03d}'.format(dat) + '.csv')
+        p = path.join(dir, 'specdata', '{0:03d}'.format(dat) + '.csv')
         df_list.append(pd.read_csv(p))
     dat_final = pd.concat(df_list, ignore_index=True)
     return round(dat_final[pol].mean(), 3)
-
-print(getdata('specdata', 'nitrate', range(1, 5)))
