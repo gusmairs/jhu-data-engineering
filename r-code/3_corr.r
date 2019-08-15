@@ -5,17 +5,23 @@
 # number of complete cases meets or exceeds a threshold
 # Uses the complete() function from task 2
 
-corr <- function(directory, threshold = 0) {
-    get_complete <- function(directory, id = 1:332) {
-        obs_table <- data.frame("id" = numeric(), "nobs" = numeric())
-        for (x in id) {
-            setx <- read.csv(
-                file.path(directory, paste0(sprintf("%03d", x), ".csv")))
+get_complete <- function(id = 1:332) {
+    con <- file('r-code/data_path.txt', open = 'r')
+    dir <- readLines(con)
+    close(con)
+    if (!dir.exists(file.path(dir, 'specdata'))) {
+        unzip(file.path(dir, 'specdata.zip'), exdir = dir)
+    }
+    obs_table <- data.frame("id" = numeric(), "nobs" = numeric())
+    for (x in id) {
+        setx <- read.csv(
+            file.path(directory, paste0(sprintf("%03d", x), ".csv")))
             obs_table[nrow(obs_table) + 1, ] <- c(x, sum(complete.cases(setx)))
         }
         obs_table
     }
 
+corr <- function(directory, threshold = 0) {
     active <- subset(get_complete(directory), nobs > threshold)
     cor_vect <- c()
     for (x in active[, "id"]) {
@@ -28,5 +34,3 @@ corr <- function(directory, threshold = 0) {
     }
     cor_vect
 }
-
-corr("specdata", 1000)
