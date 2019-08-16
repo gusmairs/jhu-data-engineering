@@ -7,7 +7,7 @@ import pandas as pd
 from os import path
 
 def obs(dat_list=range(1, 333)):
-    with open('py-code/data_path.txt', 'r') as f:
+    with open('pycode/data_path.txt', 'r') as f:
         dir = f.readlines()[0].replace('\n', '')
     obs_list = []
     for dat in dat_list:
@@ -15,5 +15,3 @@ def obs(dat_list=range(1, 333)):
         dat_df = pd.read_csv(p)
         obs_list.append([dat, len(dat_df.dropna())])
     return pd.DataFrame(obs_list, columns=('id', 'nobs'))
-
-print(obs(range(1, 10)))
