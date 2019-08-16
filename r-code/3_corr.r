@@ -10,7 +10,7 @@
 source('r-code/2_complete.r')
 
 corr <- function(threshold = 0) {
-    con <- file('r-code/data_path.txt', open = 'r')
+    con <- file('data_path.txt', open = 'r')
     dir <- readLines(con)
     close(con)
     active <- subset(get_complete(), nobs > threshold)

@@ -4,7 +4,7 @@
 # Reads data from files as above and compiles a table of complete cases
 
 get_complete <- function(id = 1:332) {
-    con <- file('r-code/data_path.txt', open = 'r')
+    con <- file('data_path.txt', open = 'r')
     dir <- readLines(con)
     close(con)
     if (!dir.exists(file.path(dir, 'specdata'))) {

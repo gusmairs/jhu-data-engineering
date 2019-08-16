@@ -13,7 +13,7 @@
 # unzips the data file, runs the script, then deletes the unzipped dir.
 
 pollutant_mean <- function(pollutant, id = 1:332) {
-    con <- file('r-code/data_path.txt', open = 'r')
+    con <- file('data_path.txt', open = 'r')
     dir <- readLines(con)
     close(con)
     if (!dir.exists(file.path(dir, 'specdata'))) {
