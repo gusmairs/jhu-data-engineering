@@ -6,9 +6,7 @@
 import pandas as pd
 from os import path
 
-def getdata(pol, dat_list=range(1, 333)):
-    with open('data_path.txt', 'r') as f:
-        dir = f.readlines()[0].replace('\n', '')
+def getdata(dir, pol, dat_list=range(1, 333)):
     df_list = []
     for dat in dat_list:
         p = path.join(dir, 'specdata', '{0:03d}'.format(dat) + '.csv')

@@ -4,10 +4,8 @@ import pandas as pd
 from os import path
 from pycode.complete import obs
 
-def corr(thresh):
-    with open('data_path.txt', 'r') as f:
-        dir = f.readlines()[0].replace('\n', '')
-    all_dat = obs()
+def corr(dir, thresh):
+    all_dat = obs(dir)
     valid_obs = all_dat.loc[all_dat.nobs > thresh].id
     corr_list = []
     for id in valid_obs:
